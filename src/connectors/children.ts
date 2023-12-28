@@ -13,6 +13,7 @@ export const children = (families: readonly Family[]): readonly Connector[] =>
 
     // from parent(s) to child
     if (parent && parent.nodes.every((node) => !!node.children.length)) {
+      console.log('### parent', parent)
       const pY = family.Y + HALF_SIZE;
       connectors.push([pX, pY, pX, mY, 'children1']);
     }

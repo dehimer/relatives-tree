@@ -1,6 +1,6 @@
 {
   "name": "dehimer-relatives-tree",
-  "version": "3.2.15",
+  "version": "3.2.16",
   "description": "Calculates families and nodes positions for rendering a family tree",
   "main": "lib/index.js",
   "module": "lib/index.js",
