@@ -55,7 +55,8 @@ export const children = (families: readonly Family[]): readonly Connector[] =>
 
       connectors.push([minPosition, mY, maxPosition, mY, {type: 'children5', nodes: parent.nodes}]);
 
-      positions.forEach((position, index) => {
+      positions.forEach((_position, index) => {
+        // console.log('### position', position)
         if (index !== 0) {
           const positionA = positions[index - 1]
           const positionB = positions[index]
