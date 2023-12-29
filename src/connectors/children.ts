@@ -55,13 +55,20 @@ export const children = (families: readonly Family[]): readonly Connector[] =>
 
       connectors.push([minPosition, mY, maxPosition, mY, {type: 'children5', nodes: parent.nodes}]);
 
-      positions.forEach((_position, index) => {
+      // positions.forEach((_position, index) => {
+      //   // console.log('### position', position)
+      //   if (index !== 0) {
+      //     const positionA = positions[index - 1]
+      //     const positionB = positions[index]
+      //     connectors.push([positionA!.x, mY, positionB!.x, mY, {type: 'children55', nodes: [positionA!.node, positionB!.node]}]);
+      //   }
+      // })
+      positions.forEach((position) => {
         // console.log('### position', position)
-        if (index !== 0) {
-          const positionA = positions[index - 1]
-          const positionB = positions[index]
-          connectors.push([positionA!.x, mY, positionB!.x, mY, {type: 'children55', nodes: [positionA!.node, positionB!.node]}]);
-        }
+        const minPosition = min([position.x, pX])
+        const maxPosition = max([position.x, pX])
+
+        connectors.push([minPosition, mY, maxPosition, mY, {type: 'children55', node: position.node}]);
       })
     // horizontal between parent(s) and child
     } else if (positions.length === 1 && pX !== positions[0]?.x) {
