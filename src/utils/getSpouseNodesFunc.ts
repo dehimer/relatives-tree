@@ -44,8 +44,7 @@ export const getSpouseNodesFunc = (store: Store) => {
       console.log('### getSpouseNodesFunc.middle', middle)
     };
 
-    const result: SpousesNodes = { left: [], middle: middle.toSorted((a, b) => parseInt(`${a.id}`) - parseInt(`${b.id}`)), right: [] };
-
+    const result: SpousesNodes = { left: [], middle: middle.toSorted(({id: b}, {id: a}) => (isNaN(parseInt(a)) ? 0 : parseInt(a)) - (isNaN(parseInt(b)) ? 0 : parseInt(b))), right: [] };
     if (middle.length === NODES_IN_COUPLE) {
       const [first, second] = middle as [Node, Node];
       result.left = first.spouses.filter(excludeRel(second)).map(toNode);
