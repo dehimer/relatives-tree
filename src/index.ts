@@ -15,7 +15,6 @@ const calcFamilies = pipe(inMiddleDirection, inParentDirection, inChildDirection
 export default (nodes: readonly Node[], options: Options): RelData => {
   const store = new Store(nodes, options.rootId);
   console.log('### store before calc', store)
-
   if (options.placeholders) placeholders(store);
 
   const families = calcFamilies(store).familiesArray;
