@@ -11,6 +11,7 @@ import { Family, FamilyType, Node, RelType } from '../types';
 import { correctOverlaps } from './correctOverlaps';
 
 export const createFamilyWithoutParents = (store: Store): readonly Family[] => {
+  console.log('### createFamilyWithoutParents', store.getNextId(), store)
   const family = newFamily(store.getNextId(), FamilyType.root, true);
   console.log('### createFamilyWithoutParents.family', family)
   family.children = createChildUnitsFunc(store)(family.id, store.root);
