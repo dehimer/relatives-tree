@@ -12,7 +12,9 @@ import { correctOverlaps } from './correctOverlaps';
 
 export const createFamilyWithoutParents = (store: Store): readonly Family[] => {
   const family = newFamily(store.getNextId(), FamilyType.root, true);
+  console.log('### createFamilyWithoutParents.family', family)
   family.children = createChildUnitsFunc(store)(family.id, store.root);
+  console.log('### createFamilyWithoutParents.family.children', family.children)
   setDefaultUnitShift(family);
   return [family];
 };
@@ -24,9 +26,12 @@ const getParentIDs = (root: Node, type: RelType): readonly string[] =>
 // Hide: another spouses for parents, half-siblings (for both parents)
 export const createDiffTypeFamilies = (store: Store): readonly Family[] => {
   const createFamily = createFamilyFunc(store);
+  console.log('### createDiffTypeFamilies.createFamily', createFamily)
 
   const bloodFamily = createFamily(getParentIDs(store.root, RelType.blood), FamilyType.root, true);
+  console.log('### createDiffTypeFamilies.bloodFamily', bloodFamily)
   const adoptedFamily = createFamily(getParentIDs(store.root, RelType.adopted));
+  console.log('### createDiffTypeFamilies.adoptedFamily', adoptedFamily)
 
   correctOverlaps(bloodFamily, adoptedFamily);
   return [bloodFamily, adoptedFamily];
@@ -35,12 +40,16 @@ export const createDiffTypeFamilies = (store: Store): readonly Family[] => {
 // Show: parents + their spouses, my siblings + half-siblings, my spouses
 export const createBloodFamilies = (store: Store): readonly Family[] => {
   const createFamily = createFamilyFunc(store);
+  console.log('### createBloodFamilies.createFamily', createFamily)
 
   const mainFamily = createFamily(store.root.parents.map(prop('id')), FamilyType.root, true);
+  console.log('### createBloodFamilies.mainFamily', mainFamily)
   const parents = unitsToNodes(mainFamily.parents);
+  console.log('### createBloodFamilies.parents', parents)
 
   if (parents.length === NODES_IN_COUPLE) {
     const { left, right } = getSpouseNodesFunc(store)(parents);
+    console.log('### createBloodFamilies(left/right)',left, right)
 
     return [
       left.map((node) => createFamily([node.id])),

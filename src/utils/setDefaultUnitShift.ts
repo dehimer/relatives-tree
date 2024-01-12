@@ -12,10 +12,12 @@ const arrangeUnitsIn = (family: Family): void => {
 
 export const setDefaultUnitShift = (family: Family): void => {
   const units = [family.parents, family.children];
+  console.log('### setDefaultUnitShift.units', units)
 
   units.forEach(arrangeInOrder);
   arrangeUnitsIn(family);
 
   const start = min(units.flat().map(prop('pos')));
+  console.log('### setDefaultUnitShift.start', start)
   if (start !== 0) units.forEach((items) => correctUnitsShift(items, start * -1));
 };
