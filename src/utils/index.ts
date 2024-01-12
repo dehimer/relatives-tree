@@ -33,7 +33,10 @@ export const hasDiffParents = (node: Node): boolean => {
   // console.log('### hasDiffParents.has', has, node.parents.map(prop('type')), node.parents.map(prop('type')).filter(unique))
   return has
 };
-export const byGender = (target: Gender) => (_: Node, b: Node) => (b.gender !== target ? -1 : 1);
+export const byGender = (target: Gender) => (_: Node, b: Node) => {
+  // console.log('### byGender', target, b.gender)
+  return (b.gender !== target ? -1 : 1)
+};
 
 export const relToNode = (store: Store) => (rel: Relation) => store.getNode(rel.id);
 export const withRelType =
