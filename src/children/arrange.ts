@@ -7,12 +7,12 @@ import type { Family } from '../types';
 
 const arrangeNextFamily = (family: Family, nextFamily: Family, right: number): void => {
   const unit = family.parents[0]!;
-  console.log('### arrangeNextFamily.unit', unit)
+  // console.log('### arrangeNextFamily.unit', unit)
   const index = nextFamily.children.findIndex(sameAs(unit));
-  console.log('### index', index)
-  console.log('### nextFamily.children[index]', nextFamily.children[index])
+  // console.log('### index', index)
+  // console.log('### nextFamily.children[index]', nextFamily.children[index])
 
-  if (index !== -1) {
+  // if (index !== -1) {
     index === 0
       ? (nextFamily.X = getUnitX(family, unit) - nextFamily.children[index]!.pos)
       : (nextFamily.children[index]!.pos = getUnitX(family, unit) - nextFamily.X);
@@ -22,8 +22,7 @@ const arrangeNextFamily = (family: Family, nextFamily: Family, right: number): v
     if (nextFamily.children[nextIdx]) {
       correctUnitsShift(nextFamily.children.slice(nextIdx), right - getUnitX(nextFamily, nextFamily.children[nextIdx]!));
     }
-  }
-
+  // }
 };
 
 const arrangeMiddleFamilies = (families: readonly Family[], fid: number, startFrom: number): void => {

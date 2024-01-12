@@ -19,6 +19,7 @@ export const inMiddleDirection = (store: Store): Store => {
 
   arrangeFamilies(families);
   families.forEach((family) => store.families.set(family.id, family));
+  console.log('### inMiddleDirection', families)
 
   return store;
 };

@@ -13,6 +13,7 @@ export const inChildDirection = (store: Store): Store => {
   const updateFamily = updateFamilyFunc(store);
   const arrangeFamilies = arrangeFamiliesFunc(store);
 
+
   store.familiesArray.filter(withType(FamilyType.root)).forEach((rootFamily) => {
     let stack: Unit[] = getUnitsWithChildren(rootFamily);
 
@@ -27,6 +28,8 @@ export const inChildDirection = (store: Store): Store => {
       stack = stack.concat(getUnitsWithChildren(family));
     }
   });
+
+  console.log('### inChildDirection', store)
 
   return store;
 };

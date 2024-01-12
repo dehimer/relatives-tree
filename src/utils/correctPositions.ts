@@ -26,5 +26,7 @@ export const correctPositions = (store: Store): Store => {
   correct(families, 'Y');
   correct(families, 'X');
 
+  console.log('### correctPositions', store)
+
   return store;
 };
