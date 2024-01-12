@@ -30,7 +30,7 @@ export const toMap = <T extends { id: any }>(items: readonly T[]): Map<T['id'], 
 
 export const hasDiffParents = (node: Node): boolean => {
   const has = node.parents.map(prop('type')).filter(unique).length > 1;
-  console.log('### hasDiffParents.has', has, node.parents.map(prop('type')), node.parents.map(prop('type')).filter(unique))
+  // console.log('### hasDiffParents.has', has, node.parents.map(prop('type')), node.parents.map(prop('type')).filter(unique))
   return has
 };
 export const byGender = (target: Gender) => (_: Node, b: Node) => (b.gender !== target ? -1 : 1);

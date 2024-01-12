@@ -29,7 +29,5 @@ export const inChildDirection = (store: Store): Store => {
     }
   });
 
-  console.log('### inChildDirection', store)
-
   return store;
 };

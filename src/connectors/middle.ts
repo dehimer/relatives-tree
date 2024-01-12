@@ -9,7 +9,7 @@ const calcConnectors = (family: Family, families: readonly Family[]) => (connect
   const pY = family.Y + HALF_SIZE;
 
   if (nodeCount(unit) === NODES_IN_COUPLE) {
-    console.log('### middle 1', [pX, pY, pX + SIZE, pY])
+    // console.log('### middle 1', [pX, pY, pX + SIZE, pY])
     connectors.push([pX, pY, pX + SIZE, pY]);
   }
   // TODO: update and refactor
@@ -20,7 +20,7 @@ const calcConnectors = (family: Family, families: readonly Family[]) => (connect
         other.parents.forEach((parent) => {
           if (parent.nodes.some(withId(unit.nodes[0]!.spouses[0]!.id))) {
             const xX = [pX, getUnitX(other, parent) + HALF_SIZE].sort(inAscOrder);
-            console.log('### middle 2', [xX[0]!, pY, xX[1]!, pY]);
+            // console.log('### middle 2', [xX[0]!, pY, xX[1]!, pY]);
             connectors.push([xX[0]!, pY, xX[1]!, pY]);
           }
         });

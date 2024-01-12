@@ -6,24 +6,18 @@ import { arrangeParentsIn } from '../utils/arrangeParentsIn';
 import type { Family } from '../types';
 
 const arrangeNextFamily = (family: Family, nextFamily: Family, right: number): void => {
-  console.log('### arrangeNextFamily', family, nextFamily)
   const unit = family.parents[0]!;
-  console.log('### arrangeNextFamily.unit', unit)
   const index = nextFamily.children.findIndex(sameAs(unit));
-  console.log('### index', index)
-  console.log('### nextFamily.children[index]', nextFamily.children[index])
 
-  // if (index !== -1) {
-    index === 0
-      ? (nextFamily.X = getUnitX(family, unit) - nextFamily.children[index]!.pos)
-      : (nextFamily.children[index]!.pos = getUnitX(family, unit) - nextFamily.X);
+  index === 0
+    ? (nextFamily.X = getUnitX(family, unit) - nextFamily.children[index]!.pos)
+    : (nextFamily.children[index]!.pos = getUnitX(family, unit) - nextFamily.X);
 
-    const nextIdx: number = nextIndex(index);
+  const nextIdx: number = nextIndex(index);
 
-    if (nextFamily.children[nextIdx]) {
-      correctUnitsShift(nextFamily.children.slice(nextIdx), right - getUnitX(nextFamily, nextFamily.children[nextIdx]!));
-    }
-  // }
+  if (nextFamily.children[nextIdx]) {
+    correctUnitsShift(nextFamily.children.slice(nextIdx), right - getUnitX(nextFamily, nextFamily.children[nextIdx]!));
+  }
 };
 
 const arrangeMiddleFamilies = (families: readonly Family[], fid: number, startFrom: number): void => {
@@ -39,13 +33,11 @@ const arrangeMiddleFamilies = (families: readonly Family[], fid: number, startFr
 export const arrangeFamiliesFunc =
   (store: Store) =>
   (family: Family): void => {
-    console.log('### arrangeFamiliesFunc.family', family)
     let right = 0;
 
     while (family.pid) {
       right = Math.max(right, rightOf(family));
       const nextFamily = store.getFamily(family.pid);
-      console.log(`### ${family.pid} nextFamily`, nextFamily)
 
       arrangeNextFamily(family, nextFamily, right);
       arrangeParentsIn(nextFamily);

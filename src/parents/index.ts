@@ -14,15 +14,15 @@ export const inParentDirection = (store: Store): Store => {
   const arrangeFamily = arrangeFamiliesFunc(store);
 
 
-  console.log('### inParentDirection.store.rootFamily', store.rootFamily)
+  // console.log('### inParentDirection.store.rootFamily', store.rootFamily)
   let stack = getParentUnitsWithParents(store.rootFamily);
-  console.log('### inParentDirection.stack', stack)
+  // console.log('### inParentDirection.stack', stack)
 
   while (stack.length) {
     const childUnit = stack.pop()!;
-    console.log('### inParentDirection.childUnit', childUnit)
+    // console.log('### inParentDirection.childUnit', childUnit)
     const family = createFamily(nodeIds(childUnit));
-    console.log('### inParentDirection.family', family)
+    // console.log('### inParentDirection.family', family)
 
     updateFamily(family, childUnit);
     arrangeFamily(family);
@@ -30,7 +30,7 @@ export const inParentDirection = (store: Store): Store => {
     store.families.set(family.id, family);
     stack = stack.concat(getParentUnitsWithParents(family).reverse());
   }
-  console.log('### inParentDirection', store)
+  // console.log('### inParentDirection', store)
 
   return store;
 };

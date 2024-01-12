@@ -20,16 +20,16 @@ const sameIn = (units: readonly Unit[]) => {
 
 export const correctOverlaps = (bloodFamily: Family, adoptedFamily: Family): void => {
   const sharedIDs = unitsToNodes(bloodFamily.children).filter(sameIn(adoptedFamily.children)).map(prop('id'));
-  console.log('### correctOverlaps.sharedIDs', sharedIDs)
+  // console.log('### correctOverlaps.sharedIDs', sharedIDs)
 
   const cachePos: readonly number[] = bloodFamily.children.map(prop('pos'));
-  console.log('### correctOverlaps.cachePos', cachePos)
+  // console.log('### correctOverlaps.cachePos', cachePos)
   bloodFamily.children = [...bloodFamily.children].sort(moveSharedUnitToRight(sharedIDs));
-  console.log('### correctOverlaps.bloodFamily.children', bloodFamily.children)
+  // console.log('### correctOverlaps.bloodFamily.children', bloodFamily.children)
   bloodFamily.children.forEach((unit, idx) => (unit.pos = cachePos[idx]!));
 
   adoptedFamily.children = adoptedFamily.children.filter((unit) => unit.nodes.some(withIds(sharedIDs, false)));
-  console.log('### correctOverlaps.adoptedFamily.children', adoptedFamily.children)
+  // console.log('### correctOverlaps.adoptedFamily.children', adoptedFamily.children)
 
   setDefaultUnitShift(adoptedFamily);
 };

@@ -16,7 +16,7 @@ export const rightSide = (unit: Unit): number => unit.pos + nodeCount(unit) * SI
 export const sameAs = (target: Unit) => (unit: Unit) => {
   const targetNodeIdsJoined = nodeIds(target).join('')
   const unitNodeIdsJoined = nodeIds(unit).join('')
-  console.log(`### sameAs ${targetNodeIdsJoined} === ${unitNodeIdsJoined}`)
+
   return targetNodeIdsJoined === unitNodeIdsJoined
 };
 export const getUnitX = (family: Family, unit: Unit) => family.X + unit.pos;

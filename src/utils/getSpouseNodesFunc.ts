@@ -34,14 +34,14 @@ export const getSpouseNodesFunc = (store: Store) => {
   const toNode = relToNode(store);
 
   return (parents: readonly Node[]): SpousesNodes => {
-    console.log('### getSpouseNodesFunc.parents', parents)
+    // console.log('### getSpouseNodesFunc.parents', parents)
     let middle: readonly Node[] = parents;
-    console.log('### getSpouseNodesFunc.parents', parents)
+    // console.log('### getSpouseNodesFunc.parents', parents)
 
     if (middle.length !== NODES_IN_COUPLE) {
-      console.log('### getSpouseNodesFunc !== NODES_IN_COUPLE')
+      // console.log('### getSpouseNodesFunc !== NODES_IN_COUPLE')
       middle = getCoupleNodes(store, middle[0]!);
-      console.log('### getSpouseNodesFunc.middle', middle)
+      // console.log('### getSpouseNodesFunc.middle', middle)
     };
 
     const result: SpousesNodes = { left: [], middle: middle.toSorted(({id: b}, {id: a}) => (isNaN(parseInt(a)) ? 0 : parseInt(a)) - (isNaN(parseInt(b)) ? 0 : parseInt(b))), right: [] };
