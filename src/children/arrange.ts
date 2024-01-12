@@ -6,7 +6,7 @@ import { arrangeParentsIn } from '../utils/arrangeParentsIn';
 import type { Family } from '../types';
 
 const arrangeNextFamily = (family: Family, nextFamily: Family, right: number): void => {
-  console.log('### arrangeNextFamily', JSON.stringify(family, null, 2), JSON.stringify(nextFamily, null, 2))
+  console.log('### arrangeNextFamily', family, nextFamily)
   const unit = family.parents[0]!;
   console.log('### arrangeNextFamily.unit', unit)
   const index = nextFamily.children.findIndex(sameAs(unit));
