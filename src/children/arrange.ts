@@ -33,11 +33,13 @@ const arrangeMiddleFamilies = (families: readonly Family[], fid: number, startFr
 export const arrangeFamiliesFunc =
   (store: Store) =>
   (family: Family): void => {
+    console.log('### arrangeFamiliesFunc.family', family)
     let right = 0;
 
     while (family.pid) {
       right = Math.max(right, rightOf(family));
       const nextFamily = store.getFamily(family.pid);
+      console.log(`### ${family.pid} nextFamily`, nextFamily)
 
       arrangeNextFamily(family, nextFamily, right);
       arrangeParentsIn(nextFamily);
