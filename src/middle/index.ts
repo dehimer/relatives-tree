@@ -12,6 +12,7 @@ const arrangeFamilies = (families: readonly Family[]): void => {
 };
 
 export const inMiddleDirection = (store: Store): Store => {
+  console.log('### inMiddleDirection.store.root.parents.length', store.root.parents.length, store)
   const families = store.root.parents.length
     ? hasDiffParents(store.root)
       ? createDiffTypeFamilies(store)
