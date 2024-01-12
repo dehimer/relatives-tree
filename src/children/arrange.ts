@@ -7,7 +7,10 @@ import type { Family } from '../types';
 
 const arrangeNextFamily = (family: Family, nextFamily: Family, right: number): void => {
   const unit = family.parents[0]!;
+  console.log('### arrangeNextFamily.unit', unit)
   const index = nextFamily.children.findIndex(sameAs(unit));
+  console.log('### index', index)
+  console.log('### nextFamily.children[index]', nextFamily.children[index])
 
   index === 0
     ? (nextFamily.X = getUnitX(family, unit) - nextFamily.children[index]!.pos)
